@@ -17,7 +17,7 @@ abstract class AbstractRequest extends FormRequest
                 Response::$statusTexts[Response::HTTP_UNPROCESSABLE_ENTITY], 
                 (array)$validator->errors()->messages()
             )), 
-            Response::HTTP_OK
+            Response::HTTP_UNPROCESSABLE_ENTITY
         ));
     }
 

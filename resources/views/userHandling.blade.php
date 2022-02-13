@@ -91,19 +91,24 @@
     <script>
         $(document).ready(function(){
             $("#getTokenButton").click(function(){
-                $.post(
-                    "/api/register",
-                    $( "#getTokenForm" ).serialize(), 
-                    function(data, status){
+                $.ajax({
+                    url: '/api/register',
+                    method: 'POST',
+                    data: $('#getTokenForm').serialize(),
+                    success: function(data){
                         $("#getTokenResponse").val(JSON.stringify(data, null, "\t"));
-                    });
+                    },
+                    error: function(data){
+                        $("#getTokenResponse").val(JSON.stringify(JSON.parse(data.responseText), null, "\t"));
+                    }
+                });
             });
             
             
             $("#quotationButton").click(function(){
 
                 var jwtToken = 'Bearer '+$("#jwtToken").val();
-                
+
                 $.ajax({
                     url: '/api/quotation',
                     headers: {
@@ -118,7 +123,10 @@
                         "end_date": $("#end_date").val()
                     }),
                     success: function(data){
-                        $("#quotationFormResponse").val(JSON.stringify(data));
+                        $("#quotationFormResponse").val(JSON.stringify(data, null, "\t"));
+                    },
+                    error: function(data){
+                        $("#quotationFormResponse").val(JSON.stringify(JSON.parse(data.responseText), null, "\t"));
                     }
                 });
             });

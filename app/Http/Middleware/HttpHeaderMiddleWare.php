@@ -34,7 +34,7 @@ class HttpHeaderMiddleware
         
         return response()->json([
             (new ApiResponse(false, "You must add Http Header; Content-Type application/json,  Authorization Bearer <JWT Token>"))
-        ], Response::HTTP_OK);
+        ], Response::HTTP_UNAUTHORIZED);
         
     }
 }

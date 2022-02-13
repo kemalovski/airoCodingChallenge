@@ -7,7 +7,6 @@ use App\Models\User;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use Symfony\Component\HttpFoundation\Response;
 use App\Http\Requests\UserStoreRequest;
-use App\Http\Requests\UserAuthenticateRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use App\Http\Response\Response as ApiResponse;
 
@@ -42,7 +41,7 @@ class UserController extends Controller
             throw new HttpResponseException(
                 response()->json([
                 	(new ApiResponse(false, $e->getMessage()))
-                ], Response::HTTP_OK)
+                ], Response::HTTP_NOT_FOUND)
             );
         }
         

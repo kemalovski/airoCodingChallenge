@@ -14,7 +14,7 @@ Ready to use
 
 Usage
 ------
-1. Our frontend side we will see from localhost.
+1. Our frontend side we will see from localhost. We have 2 form there;
 2. From **Get Token Form** we can create user to get our JWT TOKEN
 3. From **Quotation Form** we can create new Quotation with using JWT TOKEN
 

@@ -2,13 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use JWTAuth;
 use App\Models\User;
-use Tymon\JWTAuth\Exceptions\JWTException;
-use Symfony\Component\HttpFoundation\Response;
 use App\Http\Requests\UserStoreRequest;
-use Illuminate\Http\Exceptions\HttpResponseException;
-use App\Http\Response\Response as ApiResponse;
 use App\Http\Services\UserService;
 
 

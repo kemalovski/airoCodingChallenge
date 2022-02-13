@@ -16,7 +16,7 @@ class QuotationStoreRequest extends AbstractRequest
     public function rules()
     {
         return [
-            'age' => 'required|string',
+            'age' => 'required|string|regex:/^(\d+(,\d+)*)?$/',
             'currency_id' => ['required', new Currency()],
             'start_date' => 'required|string|date_format:Y-m-d',
             'end_date' => 'required|string|date_format:Y-m-d',

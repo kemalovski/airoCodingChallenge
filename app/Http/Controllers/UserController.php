@@ -32,24 +32,24 @@ class UserController extends Controller
         try {
             if (! $token['token'] = JWTAuth::attempt($credentials)) {
                 $response = (new ApiResponse(false, "Login credentials are invalid.", $token));
-                return response()->json([
+                return response()->json(
                 	$response
-                ], Response::HTTP_OK);
+                , Response::HTTP_OK);
             }
         } catch (JWTException $e) {
             
             throw new HttpResponseException(
-                response()->json([
+                response()->json(
                 	(new ApiResponse(false, $e->getMessage()))
-                ], Response::HTTP_NOT_FOUND)
+                , Response::HTTP_NOT_FOUND)
             );
         }
         
         $response = (new ApiResponse(true, "Token created successfully.", $token));
         
-        return response()->json([
+        return response()->json(
             $response
-        ], Response::HTTP_OK);
+        , Response::HTTP_OK);
  		
     }
     

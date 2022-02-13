@@ -11,11 +11,11 @@ class UserController extends Controller
 {
     public function register(UserStoreRequest $request)
     {
-        $user = User::create([
+        User::create([
             'name' => $request->name,
         	'email' => $request->email,
         	'password' => bcrypt($request->password)
-        ])->getAttributes();
+        ]);
         
         return (new UserService())->getToken($request);
     	

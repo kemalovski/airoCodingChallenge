@@ -27,16 +27,16 @@ class JwtMiddleware extends BaseMiddleware
             if ($e instanceof \Tymon\JWTAuth\Exceptions\TokenInvalidException){
                 return response()->json(
                     (new ApiResponse(false, "Token is Invalid"))
-                , Response::HTTP_UNAUTHORIZED);
+                , Response::HTTP_OK);
                 
             }else if ($e instanceof \Tymon\JWTAuth\Exceptions\TokenExpiredException){
                 return response()->json(
                     (new ApiResponse(false, "Token is Invalid"))
-                , Response::HTTP_UNAUTHORIZED);
+                , Response::HTTP_OK);
             }else{
                 return response()->json(
                     (new ApiResponse(false, "Token is Invalid"))
-                , Response::HTTP_UNAUTHORIZED);
+                , Response::HTTP_OK);
             }
         }
         return $next($request);

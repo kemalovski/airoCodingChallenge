@@ -20,7 +20,6 @@ class QuotationController extends Controller
     {
         $quotation = Quotation::create($request->all())->getAttributes();
         
-        // exit(json_encode($quotation));
         return response()->json(
             (new ApiResponse(
                 (new QuotationService())->calculateTotal($quotation)->total,

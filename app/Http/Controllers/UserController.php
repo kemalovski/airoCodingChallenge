@@ -22,29 +22,27 @@ class UserController extends Controller
         	'password' => bcrypt($request->password)
         ])->getAttributes();
         
-        return response()->json([
-            (new ApiResponse(true, "User created successfully", $user))
-        ], Response::HTTP_CREATED);
+        return $this->authenticate($request);
     	
     }
 
-    public function authenticate(UserAuthenticateRequest $request)
+    public function authenticate($request)
     {
+        
         $credentials = $request->only('email', 'password');
-
         try {
             if (! $token['token'] = JWTAuth::attempt($credentials)) {
                 $response = (new ApiResponse(false, "Login credentials are invalid.", $token));
                 return response()->json([
                 	$response
-                ], Response::HTTP_UNAUTHORIZED);
+                ], Response::HTTP_OK);
             }
         } catch (JWTException $e) {
             
             throw new HttpResponseException(
                 response()->json([
                 	(new ApiResponse(false, $e->getMessage()))
-                ], Response::HTTP_INTERNAL_SERVER_ERROR)
+                ], Response::HTTP_OK)
             );
         }
         

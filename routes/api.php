@@ -16,5 +16,4 @@ use App\Http\Controllers\QuotationController;
 */
 
 Route::post('register', [UserController::class, 'register']);
-Route::post('login', [UserController::class, 'authenticate']);
 Route::post('quotation', [QuotationController::class, 'store'])->middleware(["httpHeaderControl", "jwt.verify"]);

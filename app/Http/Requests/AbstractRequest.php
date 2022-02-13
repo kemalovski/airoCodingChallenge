@@ -13,11 +13,11 @@ abstract class AbstractRequest extends FormRequest
     protected function failedValidation(Validator $validator) {
         throw new HttpResponseException(response()->json(
             (new ApiResponse(
-                true, 
+                false, 
                 Response::$statusTexts[Response::HTTP_UNPROCESSABLE_ENTITY], 
                 (array)$validator->errors()->messages()
             )), 
-            Response::HTTP_UNPROCESSABLE_ENTITY
+            Response::HTTP_OK
         ));
     }
 

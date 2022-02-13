@@ -25,6 +25,7 @@ class HttpHeaderMiddleware
         
         if(
             $request->header('Content-Type')== "application/json" 
+            && isset($jwtToken[1])
             && preg_match($bearerRegexPattern, $jwtToken[1])
             && $jwtToken[0] == "Bearer"
             ){
@@ -33,7 +34,7 @@ class HttpHeaderMiddleware
         
         return response()->json([
             (new ApiResponse(false, "You must add Http Header; Content-Type application/json,  Authorization Bearer <JWT Token>"))
-        ], Response::HTTP_UNPROCESSABLE_ENTITY);
+        ], Response::HTTP_OK);
         
     }
 }
